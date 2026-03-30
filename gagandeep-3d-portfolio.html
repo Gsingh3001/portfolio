@@ -269,16 +269,21 @@ footer{position:fixed;bottom:0;left:0;right:0;z-index:200;height:42px;display:fl
   .contact-grid{grid-template-columns:1fr;}
   
   /* Fix 1 & 2 — Responsive Header & Logo */
-  nav{height:52px;padding:calc(5px + env(safe-area-inset-top, 0px)) 12px 5px;flex-wrap:nowrap;} /* Reduced height and padding */
+  nav{height:52px;padding:calc(5px + env(safe-area-inset-top, 0px)) 12px 5px;flex-wrap:nowrap;}
   .nav-links{display:none;} 
-  .nav-logo{font-size:11px;margin-bottom:0;} /* Shrink logo text */
-  .logo-sub{display:none !important;} /* Hide subtitle */
+  .nav-logo{font-size:12px;letter-spacing:.02em;margin-bottom:0;} /* Logo font-size per user request */
+  #logo-sub{display:none !important;} /* ID-based hiding */
   
   /* Fix 3 — Badge & Clock Layout */
-  .status-pill{font-size:8px;padding:3px 7px;}
+  .status-pill{font-size:7px;padding:4px 8px;white-space:nowrap;}
+  .badge-text{display:none;}
+  .status-pill::after{content:'HIRING';letter-spacing:.05em;}
   .nav-right{gap:8px;}
   #clock{font-size:9px;}
-  .blink{width:4px;height:4px;} /* Shrink blink dot too */
+  .blink{width:4px;height:4px;}
+  
+  /* Fix 2 — Hide Bus on Mobile */
+  #bus-lane{display:none !important;}
   
   .solar-system{height:340px;}
   .skill-sidebar{display:none;}
@@ -372,7 +377,7 @@ footer{position:fixed;bottom:0;left:0;right:0;z-index:200;height:42px;display:fl
 
 <!-- ══ NAV ══ -->
 <nav>
-  <div class="nav-logo">GS<span>//</span>PORTFOLIO <span class="logo-sub">// WRG · IT TRANSFORMATION LEADER</span></div>
+  <div class="nav-logo">GS<span>//</span>PORTFOLIO <span class="logo-sub" id="logo-sub">// WRG · IT TRANSFORMATION LEADER</span></div>
   <button id="nav-toggle" onclick="toggleNav()" style="display:none;background:none;border:1px solid rgba(0,245,212,.4);color:var(--cyan);font-family:'Space Mono',monospace;font-size:10px;padding:6px 12px;cursor:pointer;letter-spacing:.1em;">☰ MENU</button>
   <nav id="main-nav" class="nav-links">
     <a href="#hero" class="active" onclick="setActive(this);closeNav()">Home</a>
@@ -383,7 +388,7 @@ footer{position:fixed;bottom:0;left:0;right:0;z-index:200;height:42px;display:fl
     <a href="#contact-section" onclick="setActive(this);closeNav()">Contact</a>
   </nav>
   <div class="nav-right">
-    <div class="status-pill"><div class="blink"></div>OPEN TO WORK</div>
+    <div class="status-pill"><div class="blink"></div><span class="badge-text">OPEN TO WORK</span></div>
     <div id="clock">--:--:--</div>
   </div>
 </nav>
