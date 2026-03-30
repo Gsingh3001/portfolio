@@ -1,0 +1,6 @@
+.snapshots/
+.gemini/
+*.tmp
+node_modules/
+package-lock.json
+serve.json
