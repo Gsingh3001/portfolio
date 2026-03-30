@@ -301,31 +301,96 @@ footer{position:fixed;bottom:0;left:0;right:0;z-index:200;height:42px;display:fl
   .section{padding:60px 20px 60px;}
   .section-title{font-size:clamp(38px,8vw,64px);}
 
-  /* SKILLS */
-  .skills-layout{grid-template-columns:1fr;gap:30px;}
-  .hex-grid{grid-template-columns:repeat(2,1fr);max-width:100%;}
-  .skills-right{display:none;}
+  /* ── SKILLS / POWER STACK ── */
+  .skills-layout{
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .hex-grid{
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 100%;
+  }
+  .hex-skill{
+    padding: 14px 12px;
+  }
+  .skill-icon{font-size:22px;}
+  .skill-name{font-size:14px;}
+  .skills-right{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .skill-pill-row{
+    padding: 10px 12px;
+    gap: 10px;
+  }
+  .skill-pill-name{font-size:11px;}
 
-  /* PROJECTS */
-  .projects-grid{grid-template-columns:1fr;}
+  /* ── PROJECTS / THINGS I'M BUILDING ── */
+  .projects-grid{
+    grid-template-columns: 1fr;
+  }
+  .proj-card{
+    padding: 18px;
+  }
+  .proj-title{font-size:20px;}
+  .proj-desc{font-size:12px;}
 
-  /* EXPERIENCE */
-  .tl-line{left:80px;}
-  .tl-year-col{width:80px;font-size:9px;padding-right:16px;}
-  .tl-dot{left:72px;}
-  .tl-body{margin-left:24px;padding:14px 16px;}
-  .tl-role{font-size:18px;}
-  .tl-desc{font-size:12px;}
+  /* ── JOURNEY / EXPERIENCE ── */
+  .tl-line{left: 0; display:none;}
+  .tl-dot{display:none;}
+  .tl-year-col{
+    width: auto;
+    text-align: left;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 6px;
+  }
+  .tl-entry{
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+  .tl-body{
+    margin-left: 0;
+    padding: 14px 16px;
+  }
+  .tl-role{font-size:16px;}
+  .tl-company{font-size:9px;}
+  .tl-desc{font-size:12px;line-height:1.6;}
 
-  /* ABOUT */
-  #about-section{flex-direction:column;gap:32px;}
+  /* ── ABOUT / WHO IS GS ── */
+  #about-section{
+    flex-direction: column;
+    gap: 28px;
+  }
+  .about-left{width:100%;}
   .about-right{width:100%;}
-  .fun-grid{grid-template-columns:1fr 1fr;}
-  .about-para{font-size:13px;}
+  .about-para{font-size:13px;line-height:1.7;}
+  .fun-grid{
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .fun-tile{padding:14px;}
+  .fun-tile-emoji{font-size:22px;}
+  .fun-tile-val{font-size:12px;}
 
-  /* CONTACT */
-  .contact-layout{grid-template-columns:1fr;gap:20px;}
-  .contact-panel{padding:20px;}
+  /* ── CONTACT / LET'S TALK ── */
+  .contact-layout{
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .contact-link{
+    padding: 14px 16px;
+    gap: 12px;
+  }
+  .cl-icon{font-size:18px;}
+  .cl-val{font-size:12px;}
+  .cl-arrow{font-size:14px;}
+  .contact-panel{padding:20px 16px;}
+  .contact-panel-emoji{font-size:36px;margin-bottom:10px;}
+  .contact-panel-text{font-size:13px;}
+  .fire-btn{padding:11px 20px;font-size:9px;}
 
   /* FOOTER */
   footer{padding:0 12px;height:38px;}
@@ -351,13 +416,20 @@ footer{position:fixed;bottom:0;left:0;right:0;z-index:200;height:42px;display:fl
   .holo-avatar-img{width:200px;height:270px;}
   .section{padding:52px 16px 48px;}
   .section-title{font-size:clamp(34px,10vw,52px);}
-  .hex-grid{grid-template-columns:1fr 1fr;}
+
+  /* Skills — single column on very small phones */
+  .hex-grid{grid-template-columns: 1fr 1fr;}
+
+  /* Journey — hide year col entirely */
   .tl-year-col{display:none;}
-  .tl-line{display:none;}
-  .tl-dot{display:none;}
-  .tl-body{margin-left:0;}
-  .contact-link{padding:12px 14px;gap:10px;}
-  .cl-val{font-size:12px;}
+
+  /* About tiles — 2 column stays fine */
+  .fun-tile-label{font-size:7px;}
+
+  /* Contact */
+  .contact-link{flex-wrap:wrap;}
+  .cl-arrow{display:none;}
+  
   footer{display:none;}
 }
 </style>
