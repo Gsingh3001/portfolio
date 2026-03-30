@@ -255,73 +255,110 @@ footer{position:fixed;bottom:0;left:0;right:0;z-index:200;height:42px;display:fl
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .75s ease,transform .75s ease;}
 .reveal.vis{opacity:1;transform:translateY(0);}
 
-/* RESPONSIVE */
+/* ── RESPONSIVE — MOBILE ── */
 @media(max-width:900px){
-  section{padding:72px 20px 80px;}
-  #hero{flex-direction:column;gap:32px;padding:80px 20px 60px;} /* Reduced back to 80px as header is now smaller */
-  .hero-right{width:100%;display:flex;flex-direction:column;align-items:center;}
-  .avatar-outer{width:260px;height:320px;}
+
+  /* NAV */
+  nav{height:52px;padding:0 12px;flex-wrap:nowrap;}
+  .nav-links{display:none;}
+  .nav-logo{font-size:13px;}
+  .nav-logo span{display:none;}
+  .status-pill{font-size:7px;padding:3px 7px;white-space:nowrap;gap:4px;}
+  #clock{font-size:8px;letter-spacing:.05em;}
+  .nav-right{gap:6px;}
+
+  /* HERO */
+  #hero{
+    flex-direction:column;
+    gap:24px;
+    padding:72px 20px 60px;
+    min-height:auto;
+  }
+  .hero-right{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  .holo-container{width:260px;height:320px;}
+  .holo-avatar-img{width:240px;height:310px;}
+  .ring1{width:280px;height:280px;}
+  .ring2{width:320px;height:320px;}
+  .ring3{width:360px;height:360px;}
   .hero-name{font-size:clamp(52px,14vw,100px);}
-  .hero-desc{font-size:13px;}
-  .hero-actions{flex-wrap:wrap;gap:10px;}
-  .btn-neon,.btn-wild{padding:11px 18px;font-size:9px;}
-  .projects-masonry{grid-template-columns:1fr;}
-  .contact-grid{grid-template-columns:1fr;}
-  
-  /* Fix 1 & 2 — Responsive Header & Logo */
-  nav{height:52px;padding:calc(5px + env(safe-area-inset-top, 0px)) 12px 5px;flex-wrap:nowrap;}
-  .nav-links{display:none;} 
-  .nav-logo{font-size:12px;letter-spacing:.02em;margin-bottom:0;} /* Logo font-size per user request */
-  #logo-sub{display:none !important;} /* ID-based hiding */
-  
-  /* Fix 3 — Badge & Clock Layout */
-  .status-pill{font-size:7px;padding:4px 8px;white-space:nowrap;}
-  .badge-text{display:none;}
-  .status-pill::after{content:'HIRING';letter-spacing:.05em;}
-  .nav-right{gap:8px;}
-  #clock{font-size:9px;}
-  .blink{width:4px;height:4px;}
-  
-  /* Fix 2 — Hide Bus on Mobile */
-  #bus-lane{display:none !important;}
-  
-  .solar-system{height:340px;}
-  .skill-sidebar{display:none;}
-  #about{flex-direction:column;gap:32px;}
+  .hero-desc{font-size:13px;max-width:100%;}
+  .hero-ctas{flex-wrap:wrap;gap:10px;}
+  .cta-primary,.cta-secondary{
+    padding:11px 18px;
+    font-size:9px;
+    letter-spacing:.1em;
+  }
+  .hero-badges{gap:7px;}
+  .badge{font-size:8px;padding:5px 10px;}
+  .status-card{display:none;}
+
+  /* SECTIONS */
+  .section{padding:60px 20px 60px;}
+  .section-title{font-size:clamp(38px,8vw,64px);}
+
+  /* SKILLS */
+  .skills-layout{grid-template-columns:1fr;gap:30px;}
+  .hex-grid{grid-template-columns:repeat(2,1fr);max-width:100%;}
+  .skills-right{display:none;}
+
+  /* PROJECTS */
+  .projects-grid{grid-template-columns:1fr;}
+
+  /* EXPERIENCE */
+  .tl-line{left:80px;}
+  .tl-year-col{width:80px;font-size:9px;padding-right:16px;}
+  .tl-dot{left:72px;}
+  .tl-body{margin-left:24px;padding:14px 16px;}
+  .tl-role{font-size:18px;}
+  .tl-desc{font-size:12px;}
+
+  /* ABOUT */
+  #about-section{flex-direction:column;gap:32px;}
   .about-right{width:100%;}
-  .telem{position:relative;bottom:auto;left:auto;width:100%;margin-top:20px;}
-  .stat-chips{gap:6px;}
-  .chip{font-size:8px;padding:4px 8px;}
-  .section-title{font-size:clamp(36px,8vw,64px);}
   .fun-grid{grid-template-columns:1fr 1fr;}
-  header{padding:0 16px;}
-  .logo-sub-old{display:none;} /* Previous rule if any */
-  footer{padding:0 16px;}
-  .footer-item{font-size:7px;}
-  #london-bus-track{display:none;}
-  .london-skyline{display:none;}
-  #phonebox{display:none;}
+  .about-para{font-size:13px;}
+
+  /* CONTACT */
+  .contact-layout{grid-template-columns:1fr;gap:20px;}
+  .contact-panel{padding:20px;}
+
+  /* FOOTER */
+  footer{padding:0 12px;height:38px;}
+  .foot-item{font-size:7px;letter-spacing:.06em;}
+  .foot-sep{display:none;}
+  #mission-t{font-size:9px;}
+
+  /* HIDE DECORATIVE ELEMENTS */
+  #bus-lane{display:none !important;}
   .scroll-hint{display:none;}
+  #cur,#cur2{display:none;}
 }
 
 @media(max-width:480px){
+  nav{padding:0 10px;}
+  .nav-logo{font-size:11px;}
+  .status-pill span:not(.blink){display:none;}
+  .status-pill::after{content:'HIRING';font-family:'Space Mono',monospace;font-size:7px;letter-spacing:.05em;}
+  #clock{display:none;}
+  #hero{padding:64px 16px 48px;}
   .hero-name{font-size:clamp(44px,16vw,72px);}
-  .projects-masonry{grid-template-columns:1fr;}
-  .fun-grid{grid-template-columns:1fr 1fr;}
-  .hero-title-row{flex-wrap:wrap;}
-  section{padding:64px 16px 60px;}
-}
-
-/* Fix 3 — Navigation hamburger CSS */
-@media(max-width:900px){
-  #nav-toggle{display:block !important;}
-  #main-nav{
-    display:none;position:fixed;top:58px;left:0;right:0;
-    background:rgba(5,8,13,.98);border-bottom:1px solid var(--border);
-    flex-direction:column;padding:12px 0;z-index:99;
-  }
-  #main-nav.open{display:flex;}
-  #main-nav a{padding:12px 24px;font-size:11px;border:none;}
+  .holo-container{width:220px;height:280px;}
+  .holo-avatar-img{width:200px;height:270px;}
+  .section{padding:52px 16px 48px;}
+  .section-title{font-size:clamp(34px,10vw,52px);}
+  .hex-grid{grid-template-columns:1fr 1fr;}
+  .tl-year-col{display:none;}
+  .tl-line{display:none;}
+  .tl-dot{display:none;}
+  .tl-body{margin-left:0;}
+  .contact-link{padding:12px 14px;gap:10px;}
+  .cl-val{font-size:12px;}
+  footer{display:none;}
 }
 </style>
 </head>
@@ -377,7 +414,7 @@ footer{position:fixed;bottom:0;left:0;right:0;z-index:200;height:42px;display:fl
 
 <!-- ══ NAV ══ -->
 <nav>
-  <div class="nav-logo">GS<span>//</span>PORTFOLIO <span class="logo-sub" id="logo-sub">// WRG · IT TRANSFORMATION LEADER</span></div>
+  <div class="nav-logo">GS<span>//</span>PORTFOLIO</div>
   <button id="nav-toggle" onclick="toggleNav()" style="display:none;background:none;border:1px solid rgba(0,245,212,.4);color:var(--cyan);font-family:'Space Mono',monospace;font-size:10px;padding:6px 12px;cursor:pointer;letter-spacing:.1em;">☰ MENU</button>
   <nav id="main-nav" class="nav-links">
     <a href="#hero" class="active" onclick="setActive(this);closeNav()">Home</a>
