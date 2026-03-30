@@ -256,20 +256,55 @@ footer{position:fixed;bottom:0;left:0;right:0;z-index:200;height:42px;display:fl
 .reveal.vis{opacity:1;transform:translateY(0);}
 
 /* RESPONSIVE */
-@media(max-width:1000px){
-  #hero{flex-direction:column;padding:80px 28px 80px;}
-  .hero-right{width:100%;display:flex;justify-content:center;}
-  .projects-grid{grid-template-columns:1fr 1fr;}
-  .section{padding:80px 28px;}
-  nav{padding:0 24px;}
-  .nav-links{display:none;}
-  .skills-layout{grid-template-columns:1fr;}
-  #about-section{flex-direction:column;}
-  .contact-layout{grid-template-columns:1fr;}
+@media(max-width:900px){
+  section{padding:72px 20px 80px;}
+  #hero{flex-direction:column;gap:32px;padding:80px 20px 60px;}
+  .hero-right{width:100%;display:flex;flex-direction:column;align-items:center;}
+  .avatar-outer{width:260px;height:320px;}
+  .hero-name{font-size:clamp(52px,14vw,100px);}
+  .hero-desc{font-size:13px;}
+  .hero-actions{flex-wrap:wrap;gap:10px;}
+  .btn-neon,.btn-wild{padding:11px 18px;font-size:9px;}
+  .projects-masonry{grid-template-columns:1fr;}
+  .contact-grid{grid-template-columns:1fr;}
+  nav{display:none;}
+  .solar-system{height:340px;}
+  .skill-sidebar{display:none;}
+  #about{flex-direction:column;gap:32px;}
+  .about-right{width:100%;}
+  .telem{position:relative;bottom:auto;left:auto;width:100%;margin-top:20px;}
+  .stat-chips{gap:6px;}
+  .chip{font-size:8px;padding:4px 8px;}
+  .section-title{font-size:clamp(36px,8vw,64px);}
+  .fun-grid{grid-template-columns:1fr 1fr;}
+  header{padding:0 16px;}
+  .logo-sub{display:none;}
+  footer{padding:0 16px;}
+  .footer-item{font-size:7px;}
+  #london-bus-track{display:none;}
+  .london-skyline{display:none;}
+  #phonebox{display:none;}
+  .scroll-hint{display:none;}
 }
-@media(max-width:640px){
-  .projects-grid{grid-template-columns:1fr;}
-  .hex-grid{grid-template-columns:1fr 1fr;}
+
+@media(max-width:480px){
+  .hero-name{font-size:clamp(44px,16vw,72px);}
+  .projects-masonry{grid-template-columns:1fr;}
+  .fun-grid{grid-template-columns:1fr 1fr;}
+  .hero-title-row{flex-wrap:wrap;}
+  section{padding:64px 16px 60px;}
+}
+
+/* Fix 3 — Navigation hamburger CSS */
+@media(max-width:900px){
+  #nav-toggle{display:block !important;}
+  #main-nav{
+    display:none;position:fixed;top:58px;left:0;right:0;
+    background:rgba(5,8,13,.98);border-bottom:1px solid var(--border);
+    flex-direction:column;padding:12px 0;z-index:99;
+  }
+  #main-nav.open{display:flex;}
+  #main-nav a{padding:12px 24px;font-size:11px;border:none;}
 }
 </style>
 </head>
@@ -326,14 +361,15 @@ footer{position:fixed;bottom:0;left:0;right:0;z-index:200;height:42px;display:fl
 <!-- ══ NAV ══ -->
 <nav>
   <div class="nav-logo">GS<span>//</span>PORTFOLIO // WRG · IT TRANSFORMATION LEADER</div>
-  <div class="nav-links">
-    <a href="#hero">Home</a>
-    <a href="#skills-section">Skills</a>
-    <a href="#projects-section">Projects</a>
-    <a href="#experience-section">Journey</a>
-    <a href="#about-section">About</a>
-    <a href="#contact-section">Contact</a>
-  </div>
+  <button id="nav-toggle" onclick="toggleNav()" style="display:none;background:none;border:1px solid rgba(0,245,212,.4);color:var(--cyan);font-family:'Space Mono',monospace;font-size:10px;padding:6px 12px;cursor:pointer;letter-spacing:.1em;">☰ MENU</button>
+  <nav id="main-nav" class="nav-links">
+    <a href="#hero" class="active" onclick="setActive(this);closeNav()">Home</a>
+    <a href="#skills-section" onclick="setActive(this);closeNav()">Skills</a>
+    <a href="#projects-section" onclick="setActive(this);closeNav()">Projects</a>
+    <a href="#experience-section" onclick="setActive(this);closeNav()">Journey</a>
+    <a href="#about-section" onclick="setActive(this);closeNav()">About</a>
+    <a href="#contact-section" onclick="setActive(this);closeNav()">Contact</a>
+  </nav>
   <div class="nav-right">
     <div class="status-pill"><div class="blink"></div>OPEN TO WORK</div>
     <div id="clock">--:--:--</div>
@@ -930,6 +966,16 @@ document.addEventListener('keydown', e=>{
     if(ki===KONAMI.length){ toast.classList.add('show'); fireConfetti(); setTimeout(()=>toast.classList.remove('show'),4000); ki=0; }
   } else ki=0;
 });
+function toggleNav(){
+  document.getElementById('main-nav').classList.toggle('open');
+}
+function closeNav(){
+  document.getElementById('main-nav').classList.remove('open');
+}
+function setActive(el){
+  document.querySelectorAll('#main-nav a').forEach(a=>a.classList.remove('active'));
+  el.classList.add('active');
+}
 </script>
 </body>
 </html>
