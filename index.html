@@ -280,8 +280,22 @@ footer{position:fixed;bottom:0;left:0;right:0;z-index:200;height:42px;display:fl
     flex-direction:column;
     align-items:center;
   }
-  .holo-container{width:260px;height:320px;}
-  .holo-avatar-img{width:240px;height:310px;}
+  .holo-container{
+    width: 280px;
+    height: 360px;
+    overflow: visible;
+  }
+  .holo-bg{
+    overflow: hidden;
+  }
+  .holo-avatar-img{
+    object-position: center 5%;
+    object-fit: contain;
+    height: auto;
+    max-height: 100%;
+    width: 90%;
+    bottom: 0;
+  }
   .ring1{width:280px;height:280px;}
   .ring2{width:320px;height:320px;}
   .ring3{width:360px;height:360px;}
