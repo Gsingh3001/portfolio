@@ -258,7 +258,7 @@ footer{position:fixed;bottom:0;left:0;right:0;z-index:200;height:42px;display:fl
 /* RESPONSIVE */
 @media(max-width:900px){
   section{padding:72px 20px 80px;}
-  #hero{flex-direction:column;gap:32px;padding:100px 20px 60px;} /* Set to 100px as per user request */
+  #hero{flex-direction:column;gap:32px;padding:80px 20px 60px;} /* Reduced back to 80px as header is now smaller */
   .hero-right{width:100%;display:flex;flex-direction:column;align-items:center;}
   .avatar-outer{width:260px;height:320px;}
   .hero-name{font-size:clamp(52px,14vw,100px);}
@@ -268,10 +268,17 @@ footer{position:fixed;bottom:0;left:0;right:0;z-index:200;height:42px;display:fl
   .projects-masonry{grid-template-columns:1fr;}
   .contact-grid{grid-template-columns:1fr;}
   
-  /* Fix nav display - don't hide the whole bar, just the links */
-  nav{height:auto;padding:calc(25px + env(safe-area-inset-top, 0px)) 20px 15px;flex-wrap:wrap;} /* Added safe-area support and extra top padding */
-  .nav-links{display:none;} /* The desktop links container */
-  .nav-logo{font-size:18px;margin-bottom:0;}
+  /* Fix 1 & 2 — Responsive Header & Logo */
+  nav{height:52px;padding:calc(5px + env(safe-area-inset-top, 0px)) 12px 5px;flex-wrap:nowrap;} /* Reduced height and padding */
+  .nav-links{display:none;} 
+  .nav-logo{font-size:11px;margin-bottom:0;} /* Shrink logo text */
+  .logo-sub{display:none !important;} /* Hide subtitle */
+  
+  /* Fix 3 — Badge & Clock Layout */
+  .status-pill{font-size:8px;padding:3px 7px;}
+  .nav-right{gap:8px;}
+  #clock{font-size:9px;}
+  .blink{width:4px;height:4px;} /* Shrink blink dot too */
   
   .solar-system{height:340px;}
   .skill-sidebar{display:none;}
@@ -283,7 +290,7 @@ footer{position:fixed;bottom:0;left:0;right:0;z-index:200;height:42px;display:fl
   .section-title{font-size:clamp(36px,8vw,64px);}
   .fun-grid{grid-template-columns:1fr 1fr;}
   header{padding:0 16px;}
-  .logo-sub{display:none;}
+  .logo-sub-old{display:none;} /* Previous rule if any */
   footer{padding:0 16px;}
   .footer-item{font-size:7px;}
   #london-bus-track{display:none;}
@@ -365,7 +372,7 @@ footer{position:fixed;bottom:0;left:0;right:0;z-index:200;height:42px;display:fl
 
 <!-- ══ NAV ══ -->
 <nav>
-  <div class="nav-logo">GS<span>//</span>PORTFOLIO // WRG · IT TRANSFORMATION LEADER</div>
+  <div class="nav-logo">GS<span>//</span>PORTFOLIO <span class="logo-sub">// WRG · IT TRANSFORMATION LEADER</span></div>
   <button id="nav-toggle" onclick="toggleNav()" style="display:none;background:none;border:1px solid rgba(0,245,212,.4);color:var(--cyan);font-family:'Space Mono',monospace;font-size:10px;padding:6px 12px;cursor:pointer;letter-spacing:.1em;">☰ MENU</button>
   <nav id="main-nav" class="nav-links">
     <a href="#hero" class="active" onclick="setActive(this);closeNav()">Home</a>
