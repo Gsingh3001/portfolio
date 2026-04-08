@@ -121,30 +121,35 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;display:flex;ali
 .accent-p{color:var(--pink);}
 .section-sub{font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.1em;margin-bottom:52px;}
 
-/* ── SKILLS ── */
-#skills-section{display:flex;flex-direction:column;}
+/* ── AI INTELLIGENCE HIGHLIGHT ── */
+.ai-highlight-section{padding:80px 60px;background:rgba(8,14,28,.4);border-top:1px solid rgba(56,182,255,.08);border-bottom:1px solid rgba(56,182,255,.08);position:relative;overflow:hidden;}
+.ai-highlight-section::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(56,182,255,.03),transparent 70%);pointer-events:none;}
+.ai-tag-line{font-family:'Space Mono',monospace;font-size:10px;color:var(--cyan);letter-spacing:.4em;text-transform:uppercase;margin-bottom:32px;display:flex;align-items:center;gap:12px;}
+.ai-tag-line::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(0,245,212,.3),transparent);}
 
-/* SKILL RADAR / HEXAGON */
-.skills-layout{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
-.hex-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:500px;}
-.hex-skill{background:var(--surface);border:1px solid var(--border);padding:20px 18px;position:relative;overflow:hidden;transition:all .3s;cursor:none;clip-path:polygon(8px 0%,calc(100% - 8px) 0%,100% 8px,100% calc(100% - 8px),calc(100% - 8px) 100%,8px 100%,0 calc(100% - 8px),0 8px);}
-.hex-skill::before{content:'';position:absolute;top:0;left:0;right:0;height:2.5px;background:linear-gradient(90deg,var(--skill-a),var(--skill-b));}
-.hex-skill::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(var(--skill-rgb),.08),transparent 70%);opacity:0;transition:opacity .3s;}
-.hex-skill:hover{border-color:rgba(56,182,255,.35);transform:translateY(-4px) scale(1.02);}
-.hex-skill:hover::after{opacity:1;}
-.skill-icon{font-size:28px;margin-bottom:8px;display:block;}
-.skill-name{font-family:'Bebas Neue',sans-serif;font-size:16px;color:#fff;letter-spacing:.05em;margin-bottom:4px;}
-.skill-cat{font-family:'Space Mono',monospace;font-size:7.5px;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-bottom:10px;}
-.skill-bar-wrap{height:3px;background:rgba(255,255,255,.06);position:relative;overflow:hidden;}
-.skill-bar-fill{position:absolute;left:0;top:0;height:100%;background:linear-gradient(90deg,var(--skill-a),var(--skill-b));transform:scaleX(0);transform-origin:left;transition:transform 1.2s cubic-bezier(.22,1,.36,1);}
-.skill-pct{font-family:'Space Mono',monospace;font-size:7px;color:var(--muted);margin-top:4px;letter-spacing:.1em;}
+.ai-nodes-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;}
+.ai-node-card{background:rgba(12,21,36,.6);border:1px solid var(--border);padding:32px 24px;text-align:center;position:relative;overflow:hidden;transition:all .4s ease;backdrop-filter:blur(10px);clip-path:polygon(0 0,calc(100% - 15px) 0,100% 15px,100% 100%,15px 100%,0 calc(100% - 15px));}
+.ai-node-card:hover{transform:translateY(-10px);border-color:var(--node-c);}
+.ai-node-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--node-c);transform:scaleX(0);transition:transform .4s;}
+.ai-node-card:hover::before{transform:scaleX(1);}
 
-.skills-right{display:flex;flex-direction:column;gap:16px;}
-.skill-pill-row{display:flex;align-items:center;gap:14px;padding:14px 18px;background:rgba(10,18,32,.8);border:1px solid var(--border);border-left:3px solid var(--pill-c,var(--cyan));transition:transform .2s;}
-.skill-pill-row:hover{transform:translateX(6px);}
-.skill-pill-icon{font-size:22px;flex-shrink:0;}
-.skill-pill-name{font-size:13px;font-weight:700;color:#fff;flex:1;}
-.skill-pill-level{font-family:'Space Mono',monospace;font-size:10px;color:var(--pill-c,var(--cyan));font-weight:700;}
+.ai-node-orb{width:64px;height:64px;background:radial-gradient(circle at 30% 30%,var(--node-c),rgba(0,0,0,.8));border-radius:50%;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 30px var(--node-c-glow),inset -5px -5px 15px rgba(0,0,0,.6);animation:nodePulse 3s ease-in-out infinite;animation-delay:var(--delay);}
+.ai-node-orb i{font-size:24px;color:#fff;filter:drop-shadow(0 0 10px #fff);}
+
+.ai-node-title{font-family:'Bebas Neue',sans-serif;font-size:28px;color:#fff;letter-spacing:.03em;margin-bottom:4px;}
+.ai-node-stack{font-family:'Space Mono',monospace;font-size:8px;color:var(--muted);text-transform:uppercase;letter-spacing:.15em;margin-bottom:14px;}
+.ai-node-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:18px;}
+.ai-node-status{font-family:'Space Mono',monospace;font-size:7px;color:var(--node-c);padding:4px 10px;border:1px solid var(--node-c);display:inline-block;letter-spacing:1px;}
+
+@keyframes nodePulse{0%,100%{transform:scale(1);box-shadow:0 0 20px var(--node-c-glow),inset -5px -5px 15px rgba(0,0,0,.6);}50%{transform:scale(1.08);box-shadow:0 0 45px var(--node-c-glow),inset -5px -5px 15px rgba(0,0,0,.6);}}
+
+/* ── EXPERIENCE — HANDS-ON — BADGE ── */
+.hands-on-hero{margin-top:48px;display:flex;align-items:center;gap:24px;padding:24px 32px;background:rgba(56,182,255,.05);border:1px solid rgba(56,182,255,.15);border-radius:2px;}
+.hoh-label{font-family:'Bebas Neue',sans-serif;font-size:42px;color:var(--yellow);line-height:1;writing-mode:vertical-lr;transform:rotate(180deg);padding-right:12px;border-right:2px solid var(--yellow);}
+.hoh-content{flex:1;}
+.hoh-title{font-family:'Bebas Neue',sans-serif;font-size:28px;color:#fff;margin-bottom:6px;letter-spacing:1px;}
+.hoh-p{font-size:14.5px;color:var(--muted);line-height:1.7;}
+.hoh-p strong{color:var(--cyan);}
 
 /* ── PROJECTS ── */
 #projects-section{display:flex;flex-direction:column;}
@@ -412,6 +417,29 @@ footer{position:fixed;bottom:0;left:0;right:0;z-index:200;height:42px;display:fl
   .foot-sep{display:none;}
   #mission-t{font-size:9px;}
 
+  /* ── AI HIGHLIGHTS — MOBILE ── */
+  .ai-highlight-section{padding:52px 20px;}
+  .ai-nodes-grid{grid-template-columns: 1fr; gap:16px;}
+  .ai-node-card{padding:24px 20px;}
+  .ai-node-title{font-size:24px;}
+  .hands-on-hero{
+    flex-direction: column;
+    padding: 20px;
+    align-items: flex-start;
+  }
+  .hoh-label{
+    writing-mode: horizontal-tb;
+    transform: none;
+    padding-right: 0;
+    border-right: none;
+    border-bottom: 2px solid var(--yellow);
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+    font-size: 32px;
+  }
+  .hoh-title{font-size:22px;}
+  .hoh-p{font-size:12px;}
+
   /* HIDE DECORATIVE ELEMENTS */
   #bus-lane{display:none !important;}
   .scroll-hint{display:none;}
@@ -571,6 +599,50 @@ footer{position:fixed;bottom:0;left:0;right:0;z-index:200;height:42px;display:fl
         <div class="stat-row"><span class="stat-k">ROLE</span><span class="stat-v hot">TCS TECH DELIVERY MGR</span></div>
         <div class="stat-row"><span class="stat-k">AI PLATFORMS</span><span class="stat-v">5 LIVE IN PROD 🚀</span></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     AI INTELLIGENCE STACK (NEW)
+══════════════════════════════ -->
+<section class="ai-highlight-section">
+  <div class="ai-tag-line reveal">// 01.A · COGNITIVE_LAYER</div>
+  
+  <div class="ai-nodes-grid">
+    <!-- OPENAI -->
+    <div class="ai-node-card reveal" style="--node-c:var(--cyan);--node-c-glow:rgba(0,245,212,.4);">
+      <div class="ai-node-orb" style="--delay:0s;"><span style="font-size:32px;font-weight:800;color:#fff;">O</span></div>
+      <div class="ai-node-title">OPENAI (GPT-4o)</div>
+      <div class="ai-node-stack">GPT-4o · Embeddings · DALL-E</div>
+      <p class="ai-node-desc">Implementing OpenAI for advanced agentic workflows, conversational logic, and high-performance semantic search.</p>
+      <div class="ai-node-status">// STACK_ACTIVE ✓</div>
+    </div>
+    
+    <!-- GOOGLE GEMINI -->
+    <div class="ai-node-card reveal" style="--node-c:var(--blue);--node-c-glow:rgba(56,182,255,.4);">
+      <div class="ai-node-orb" style="--delay:0.5s;"><span style="font-size:32px;font-weight:800;color:#fff;">G</span></div>
+      <div class="ai-node-title">GOOGLE GEMINI</div>
+      <div class="ai-node-stack">1.5 Pro · Flash · Multimodal</div>
+      <p class="ai-node-desc">Leveraging Gemini for massive context windows, multimodal analysis, and Google Cloud AI integration.</p>
+      <div class="ai-node-status">// STACK_ACTIVE ✓</div>
+    </div>
+    
+    <!-- CLAUDE -->
+    <div class="ai-node-card reveal" style="--node-c:var(--yellow);--node-c-glow:rgba(255,233,77,.4);">
+      <div class="ai-node-orb" style="--delay:1s;"><span style="font-size:32px;font-weight:800;color:#fff;">C</span></div>
+      <div class="ai-node-title">CLAUDE AI</div>
+      <div class="ai-node-stack">Anthropic · Sonnet · Opus</div>
+      <p class="ai-node-desc">Expertise in Claude for precise reasoning, complex coding tasks, and nuanced enterprise-grade RAG systems.</p>
+      <div class="ai-node-status">// STACK_ACTIVE ✓</div>
+    </div>
+  </div>
+
+  <div class="hands-on-hero reveal">
+    <div class="hoh-label">AI EXPERTISE</div>
+    <div class="hoh-content">
+      <div class="hoh-title">HANDS-ON INTEGRATION SPECIALIST</div>
+      <p class="hoh-p">Direct hands-on experience building with the world's most advanced AI stacks. From <strong>Agentic Workflows</strong> to <strong>Enterprise RAG</strong>, I architect solutions that leverage the specific strengths of <strong>OpenAI, Gemini, and Claude</strong> to deliver real business outcomes 🚀</p>
     </div>
   </div>
 </section>
