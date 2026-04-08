@@ -121,26 +121,42 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;display:flex;ali
 .accent-p{color:var(--pink);}
 .section-sub{font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.1em;margin-bottom:52px;}
 
-/* ── SKILLS ── */
-#skills-section{display:flex;flex-direction:column;}
+/* ── SKILLS SOLAR SYSTEM ── */
+.skills-layout{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;min-height:550px;}
+.solar-system-container{position:relative;width:500px;height:500px;margin:0 auto;display:flex;align-items:center;justify-content:center;perspective:1000px;}
+.sun-orb{position:absolute;width:90px;height:90px;background:radial-gradient(circle at 30% 30%,var(--yellow),var(--orange));border-radius:50%;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 0 40px var(--yellow),0 0 100px rgba(255,122,26,.35);text-align:center;animation:sunPulse 4s ease-in-out infinite;}
+.sun-orb span:first-child{font-family:'Bebas Neue',sans-serif;font-size:18px;color:#000;line-height:1;}
+.sun-orb span:last-child{font-family:'Space Mono',monospace;font-size:7px;color:#000;font-weight:700;}
 
-/* SKILL RADAR / HEXAGON */
-.skills-layout{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
-.hex-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:500px;}
-.hex-skill{background:var(--surface);border:1px solid var(--border);padding:20px 18px;position:relative;overflow:hidden;transition:all .3s;cursor:none;clip-path:polygon(8px 0%,calc(100% - 8px) 0%,100% 8px,100% calc(100% - 8px),calc(100% - 8px) 100%,8px 100%,0 calc(100% - 8px),0 8px);}
-.hex-skill::before{content:'';position:absolute;top:0;left:0;right:0;height:2.5px;background:linear-gradient(90deg,var(--skill-a),var(--skill-b));}
-.hex-skill::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(var(--skill-rgb),.08),transparent 70%);opacity:0;transition:opacity .3s;}
-.hex-skill:hover{border-color:rgba(56,182,255,.35);transform:translateY(-4px) scale(1.02);}
-.hex-skill:hover::after{opacity:1;}
-.skill-icon{font-size:28px;margin-bottom:8px;display:block;}
-.skill-name{font-family:'Bebas Neue',sans-serif;font-size:16px;color:#fff;letter-spacing:.05em;margin-bottom:4px;}
-.skill-cat{font-family:'Space Mono',monospace;font-size:7.5px;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-bottom:10px;}
-.skill-bar-wrap{height:3px;background:rgba(255,255,255,.06);position:relative;overflow:hidden;}
-.skill-bar-fill{position:absolute;left:0;top:0;height:100%;background:linear-gradient(90deg,var(--skill-a),var(--skill-b));transform:scaleX(0);transform-origin:left;transition:transform 1.2s cubic-bezier(.22,1,.36,1);}
-.skill-pct{font-family:'Space Mono',monospace;font-size:7px;color:var(--muted);margin-top:4px;letter-spacing:.1em;}
+.orbit-ring{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border:1px dashed rgba(56,182,255,.12);border-radius:50%;pointer-events:none;}
+.planet-wrapper{position:absolute;top:50%;left:50%;width:100%;height:100%;transform:translate(-50%,-50%);animation:spinPlanet linear infinite;animation-play-state:running;}
+.planet-wrapper:hover{animation-play-state:paused !important;z-index:100;}
 
-.skills-right{display:flex;flex-direction:column;gap:16px;}
-.skill-pill-row{display:flex;align-items:center;gap:14px;padding:14px 18px;background:rgba(10,18,32,.8);border:1px solid var(--border);border-left:3px solid var(--pill-c,var(--cyan));transition:transform .2s;}
+.planet{position:absolute;width:var(--pw,45px);height:var(--pw,45px);background:radial-gradient(circle at 30% 30%,var(--p1),var(--p2));border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:none;box-shadow:0 0 20px var(--shadow-c,var(--p1)),inset -4px -4px 10px rgba(0,0,0,.5);animation:counterRotation linear infinite;animation-play-state:inherit;transform-origin:center;transition:transform .3s;}
+.planet::before{content:attr(data-label);position:absolute;bottom:-24px;left:50%;transform:translateX(-50%);font-family:'Space Mono',monospace;font-size:7.5px;color:var(--text);white-space:nowrap;letter-spacing:.05em;opacity:.7;transition:opacity .3s;}
+.planet-icon{font-size:clamp(16px,2vw,22px);transition:transform .3s;pointer-events:none;}
+
+/* HOVER DETAILS */
+.planet-info-card{position:absolute;top:calc(100% + 15px);left:50%;transform:translateX(-50%) translateY(10px);width:160px;background:rgba(12,21,36,.96);border:1px solid var(--border);border-left:3px solid var(--p1);padding:14px;pointer-events:none;opacity:0;transition:all .3s cubic-bezier(.17,.89,.32,1.28);backdrop-filter:blur(10px);z-index:200;box-shadow:0 15px 35px rgba(0,0,0,.5);}
+.planet:hover{transform:scale(1.2);box-shadow:0 0 35px var(--p1);}
+.planet:hover .planet-info-card{opacity:1;transform:translateX(-50%) translateY(0);}
+.planet:hover .planet-icon{transform:scale(1.1);}
+.planet:hover::before{opacity:1;color:var(--p1);}
+
+.pi-title{font-family:'Bebas Neue',sans-serif;font-size:15px;color:#fff;margin-bottom:2px;}
+.pi-cat{font-family:'Space Mono',monospace;font-size:7px;color:var(--muted);text-transform:uppercase;margin-bottom:8px;letter-spacing:.1em;}
+.pi-bar-w{height:3px;background:rgba(255,255,255,.08);position:relative;margin-bottom:4px;}
+.pi-bar-f{position:absolute;left:0;top:0;height:100%;background:linear-gradient(90deg,var(--p1),var(--p2));}
+.pi-pct{font-family:'Space Mono',monospace;font-size:7.5px;color:var(--p1);text-align:right;}
+
+/* KEYFRAMES */
+@keyframes spinPlanet{from{transform:translate(-50%,-50%) rotate(0deg);}to{transform:translate(-50%,-50%) rotate(360deg);}}
+@keyframes counterRotation{from{transform:rotate(0deg);}to{transform:rotate(-360deg);}}
+@keyframes sunPulse{0%,100%{transform:translate(-50%,-50%) scale(1);box-shadow:0 0 40px var(--yellow),0 0 100px rgba(255,122,26,.35);}50%{transform:translate(-50%,-50%) scale(1.05);box-shadow:0 0 60px var(--yellow),0 0 150px rgba(255,122,26,.5);}}
+
+/* SKILLS RIGHT */
+.skills-right{display:flex;flex-direction:column;gap:12px;}
+.skill-pill-row{display:flex;align-items:center;gap:14px;padding:14px 18px;background:rgba(10,18,32,.8);border:1px solid var(--border);border-left:3px solid var(--pill-c,var(--cyan));transition:transform .2s;backdrop-filter:blur(10px);}
 .skill-pill-row:hover{transform:translateX(6px);}
 .skill-pill-icon{font-size:22px;flex-shrink:0;}
 .skill-pill-name{font-size:13px;font-weight:700;color:#fff;flex:1;}
@@ -318,27 +334,76 @@ footer{position:fixed;bottom:0;left:0;right:0;z-index:200;height:42px;display:fl
   /* ── SKILLS / POWER STACK ── */
   .skills-layout{
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 32px;
+    min-height: auto;
   }
-  .hex-grid{
-    grid-template-columns: repeat(2, 1fr);
-    max-width: 100%;
+  .solar-system-container{
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    perspective: none;
   }
-  .hex-skill{
-    padding: 14px 12px;
+  .sun-orb{
+    grid-column: 1 / -1;
+    position: relative;
+    top: 0; left: 0; transform: none;
+    margin: 0 auto 20px;
+    width: 120px; height: 120px;
+    animation: sunPulse 4s ease-in-out infinite;
   }
-  .skill-icon{font-size:22px;}
-  .skill-name{font-size:14px;}
+  .orbit-ring{display:none;}
+  .planet-wrapper{
+    position: relative;
+    top: 0; left: 0; transform: none;
+    width: 100%; height: auto;
+    animation: none !important;
+  }
+  .planet{
+    position: relative;
+    top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important;
+    transform: none !important;
+    width: 100% !important;
+    height: 100px;
+    border-radius: 8px;
+    flex-direction: column;
+    gap: 8px;
+    box-shadow: none;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    animation: none !important;
+    clip-path: polygon(8px 0%,calc(100% - 8px) 0%,100% 8px,100% calc(100% - 8px),calc(100% - 8px) 100%,8px 100%,0 calc(100% - 8px),0 8px);
+  }
+  .planet::before{
+    bottom: -18px;
+    font-size: 8px;
+  }
+  .planet-info-card{
+    position: static;
+    transform: none !important;
+    width: 100%;
+    opacity: 1;
+    background: transparent;
+    border: none;
+    padding: 0 10px 10px;
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+  .pi-title{font-size:12px;text-align:center;}
+  .pi-cat{font-size:6px;text-align:center;}
+  .planet-icon{font-size:24px;margin-top:10px;}
+  
   .skills-right{
     display: flex;
     flex-direction: column;
     gap: 10px;
+    margin-top: 40px;
   }
   .skill-pill-row{
-    padding: 10px 12px;
-    gap: 10px;
+    padding: 12px;
+    border-radius: 4px;
   }
-  .skill-pill-name{font-size:11px;}
 
   /* ── PROJECTS / THINGS I'M BUILDING ── */
   .projects-grid{
@@ -584,59 +649,111 @@ footer{position:fixed;bottom:0;left:0;right:0;z-index:200;height:42px;display:fl
   <p class="section-sub reveal">20+ years of enterprise skills // hover a planet to inspect its orbit ☀️</p>
 
   <div class="skills-layout">
-    <div class="hex-grid reveal">
-      <!-- SUN LABEL (virtual) -->
-      <div style="grid-column: 1 / -1; text-align: center; font-family: 'Bebas Neue', sans-serif; font-size: 24px; color: var(--yellow); margin-bottom: 20px;">20+ YEARS</div>
-      
-      <div class="hex-skill" style="--skill-a:var(--blue);--skill-b:var(--cyan);--skill-rgb:56,182,255;">
-        <span class="skill-icon">🏆</span>
-        <div class="skill-name">ITIL 4</div>
-        <div class="skill-cat">Design · Governance · SVC</div>
-        <div class="skill-bar-wrap"><div class="skill-bar-fill" data-w="97"></div></div>
-        <div class="skill-pct">97%</div>
+    <!-- SOLAR SYSTEM -->
+    <div class="solar-system-container reveal">
+      <div class="sun-orb">
+        <span>20+ YRS</span>
+        <span>EXPERTISE</span>
       </div>
-      <div class="hex-skill" style="--skill-a:var(--pink);--skill-b:var(--purple);--skill-rgb:255,45,120;">
-        <span class="skill-icon">🏗️</span>
-        <div class="skill-name">SIAM</div>
-        <div class="skill-cat">Design · Governance · KPIs</div>
-        <div class="skill-bar-wrap"><div class="skill-bar-fill" data-w="96"></div></div>
-        <div class="skill-pct">96%</div>
+
+      <!-- ITIL 4 -->
+      <div class="orbit-ring" style="width:160px;height:160px;"></div>
+      <div class="planet-wrapper" style="width:160px;height:160px;animation-duration:12s;">
+        <div class="planet" data-label="ITIL 4" style="left:50%;top:0;--p1:var(--blue);--p2:var(--cyan);animation-duration:12s;">
+          <span class="planet-icon">🏆</span>
+          <div class="planet-info-card">
+            <div class="pi-title">ITIL 4</div>
+            <div class="pi-cat">Design · Governance · SVC</div>
+            <div class="pi-bar-w"><div class="pi-bar-f" style="width:97%;"></div></div>
+            <div class="pi-pct">97%</div>
+          </div>
+        </div>
       </div>
-      <div class="hex-skill" style="--skill-a:var(--blue);--skill-b:var(--cyan);--skill-rgb:56,182,255;">
-        <span class="skill-icon">☁️</span>
-        <div class="skill-name">Azure</div>
-        <div class="skill-cat">AZ-104 · AVD · Migration</div>
-        <div class="skill-bar-wrap"><div class="skill-bar-fill" data-w="92"></div></div>
-        <div class="skill-pct">92%</div>
+
+      <!-- SIAM -->
+      <div class="orbit-ring" style="width:230px;height:230px;"></div>
+      <div class="planet-wrapper" style="width:230px;height:230px;animation-duration:18s;animation-delay:-4s;">
+        <div class="planet" data-label="SIAM" style="left:10%;top:20%;--p1:var(--pink);--p2:var(--purple);animation-duration:18s;">
+          <span class="planet-icon">🏗️</span>
+          <div class="planet-info-card">
+            <div class="pi-title">SIAM</div>
+            <div class="pi-cat">Design · Governance · KPIs</div>
+            <div class="pi-bar-w"><div class="pi-bar-f" style="width:96%;"></div></div>
+            <div class="pi-pct">96%</div>
+          </div>
+        </div>
       </div>
-      <div class="hex-skill" style="--skill-a:var(--orange);--skill-b:var(--yellow);--skill-rgb:255,122,26;">
-        <span class="skill-icon">⚙️</span>
-        <div class="skill-name">ServiceNow</div>
-        <div class="skill-cat">ITSM · SLA · Dashboards</div>
-        <div class="skill-bar-wrap"><div class="skill-bar-fill" data-w="90"></div></div>
-        <div class="skill-pct">90%</div>
+
+      <!-- AZURE -->
+      <div class="orbit-ring" style="width:300px;height:300px;"></div>
+      <div class="planet-wrapper" style="width:300px;height:300px;animation-duration:25s;animation-delay:-10s;">
+        <div class="planet" data-label="AZURE" style="right:10%;top:30%;--p1:var(--blue);--p2:var(--cyan);animation-duration:25s;">
+          <span class="planet-icon">☁️</span>
+          <div class="planet-info-card">
+            <div class="pi-title">Azure</div>
+            <div class="pi-cat">AZ-104 · AVD · Migration</div>
+            <div class="pi-bar-w"><div class="pi-bar-f" style="width:92%;"></div></div>
+            <div class="pi-pct">92%</div>
+          </div>
+        </div>
       </div>
-      <div class="hex-skill" style="--skill-a:var(--cyan);--skill-b:var(--green);--skill-rgb:0,245,212;">
-        <span class="skill-icon">💻</span>
-        <div class="skill-name">Digital Workplace</div>
-        <div class="skill-cat">M365 · Intune · Win11</div>
-        <div class="skill-bar-wrap"><div class="skill-bar-fill" data-w="93"></div></div>
-        <div class="skill-pct">93%</div>
+
+      <!-- SERVICENOW -->
+      <div class="orbit-ring" style="width:370px;height:370px;"></div>
+      <div class="planet-wrapper" style="width:370px;height:370px;animation-duration:32s;animation-delay:-15s;">
+        <div class="planet" data-label="SERVICENOW" style="left:20%;bottom:10%;--p1:var(--orange);--p2:var(--yellow);animation-duration:32s;">
+          <span class="planet-icon">⚙️</span>
+          <div class="planet-info-card">
+            <div class="pi-title">ServiceNow</div>
+            <div class="pi-cat">ITSM · SLA · Dashboards</div>
+            <div class="pi-bar-w"><div class="pi-bar-f" style="width:90%;"></div></div>
+            <div class="pi-pct">90%</div>
+          </div>
+        </div>
       </div>
-      <div class="hex-skill" style="--skill-a:var(--purple);--skill-b:var(--pink);--skill-rgb:180,77,255;">
-        <span class="skill-icon">🤖</span>
-        <div class="skill-name">AI Solutions</div>
-        <div class="skill-cat">Agentic · EU AI Act · LLMs</div>
-        <div class="skill-bar-wrap"><div class="skill-bar-fill" data-w="92"></div></div>
-        <div class="skill-pct">92%</div>
+
+      <!-- DIGITAL WORKPLACE -->
+      <div class="orbit-ring" style="width:440px;height:440px;"></div>
+      <div class="planet-wrapper" style="width:440px;height:440px;animation-duration:40s;animation-delay:-20s;">
+        <div class="planet" data-label="DIGITAL WP" style="right:20%;bottom:5%;--p1:var(--cyan);--p2:var(--green);animation-duration:40s;">
+          <span class="planet-icon">💻</span>
+          <div class="planet-info-card">
+            <div class="pi-title">Digital Workplace</div>
+            <div class="pi-cat">M365 · Intune · Win11</div>
+            <div class="pi-bar-w"><div class="pi-bar-f" style="width:93%;"></div></div>
+            <div class="pi-pct">93%</div>
+          </div>
+        </div>
       </div>
-      <div class="hex-skill" style="--skill-a:var(--orange);--skill-b:var(--yellow);--skill-rgb:255,122,26;">
-        <span class="skill-icon">🏭</span>
-        <div class="skill-name">Edge DC</div>
-        <div class="skill-cat">30+ Sites · HyperFlex</div>
-        <div class="skill-bar-wrap"><div class="skill-bar-fill" data-w="90"></div></div>
-        <div class="skill-pct">90%</div>
+
+      <!-- AI SOLUTIONS -->
+      <div class="orbit-ring" style="width:510px;height:510px;"></div>
+      <div class="planet-wrapper" style="width:510px;height:510px;animation-duration:30s;animation-delay:-5s;animation-direction:reverse;">
+        <div class="planet" data-label="AI SOLUTIONS" style="left:50%;bottom:0;--p1:var(--purple);--p2:var(--pink);animation-duration:30s;--pw:55px;box-shadow:0 0 40px rgba(180,77,255,.6),0 0 0 4px rgba(255,45,120,.2);">
+          <span class="planet-icon">🤖</span>
+          <div class="planet-info-card">
+            <div class="pi-title">AI Solutions</div>
+            <div class="pi-cat">Agentic · EU AI Act · LLMs</div>
+            <div class="pi-bar-w"><div class="pi-bar-f" style="width:92%;"></div></div>
+            <div class="pi-pct">92%</div>
+          </div>
+        </div>
       </div>
+
+      <!-- EDGE DC -->
+      <div class="orbit-ring" style="width:580px;height:580px;"></div>
+      <div class="planet-wrapper" style="width:580px;height:580px;animation-duration:50s;animation-delay:-25s;">
+        <div class="planet" data-label="EDGE DC" style="left:10%;bottom:30%;--p1:var(--orange);--p2:var(--yellow);animation-duration:50s;">
+          <span class="planet-icon">🏭</span>
+          <div class="planet-info-card">
+            <div class="pi-title">Edge DC</div>
+            <div class="pi-cat">30+ Sites · HyperFlex</div>
+            <div class="pi-bar-w"><div class="pi-bar-f" style="width:90%;"></div></div>
+            <div class="pi-pct">90%</div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <div class="skills-right reveal">
